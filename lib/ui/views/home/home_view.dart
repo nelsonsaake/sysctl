@@ -129,13 +129,51 @@ class HomeView extends StackedView<HomeViewModel> {
 
                           // Build Controls
                           Container(
+                            padding: kp2,
                             decoration: BoxDecoration(
                               borderRadius: kbrLG,
                             ),
-                            child: SizedBox.square(
-                              dimension: 350,
-                              child: Image.asset(
-                                kaResponsive,
+                            child: SizedBox(
+                              width: 200,
+                              height: 100,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Container(
+                                    height: 2,
+                                    decoration: BoxDecoration(
+                                      color: kcStone600,
+                                      borderRadius: br(4),
+                                    ),
+                                  ),
+                                  const Space4(),
+                                  Container(
+                                    height: 2,
+                                    margin: mr3(),
+                                    decoration: BoxDecoration(
+                                      color: kcStone600,
+                                      borderRadius: br(1),
+                                    ),
+                                  ),
+                                  const Space4(),
+                                  Container(
+                                    height: 2,
+                                    decoration: BoxDecoration(
+                                      color: kcStone600,
+                                      borderRadius: br(4),
+                                    ),
+                                  ),
+                                  const Space4(),
+                                  Container(
+                                    height: 2,
+                                    margin: mr4(),
+                                    decoration: BoxDecoration(
+                                      color: kcStone600,
+                                      borderRadius: br(4),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
                           ),
