@@ -1,27 +1,64 @@
-import 'package:devpanel/dynos/dyno.dart';
-import 'package:devpanel/dynos/loadDynos.dart';
+import 'dart:async';
+
+import 'package:devpanel/dynos/dyno_runner.dart';
+import 'package:devpanel/dynos/load_dynos.dart';
 import 'package:devpanel/ui/viewmodels/context_viewmodel.dart';
 
 class HomeViewModel extends ContextViewmodel {
   //...
 
-  List<Dyno>? _dynos;
+  List<DynoRunner>? _dynoRunners;
 
-  List<Dyno> get dynos => _dynos ?? [];
+  List<DynoRunner> get dynoRunners => _dynoRunners ?? [];
 
-  Dyno? _selectedDyno;
+  DynoRunner? _selectedDynoRunner;
 
-  Dyno? get selectedDyno => _selectedDyno;
+  DynoRunner? get selectedDynoRunner => _selectedDynoRunner;
 
-  void selectDyno(Dyno v) {
-    _selectedDyno = v;
+  StreamSubscription? _sub;
+
+  void listenToRunner() {
+    _sub?.cancel();
+    _sub = _selectedDynoRunner?.changeStream.listen((_) => notifyListeners());
+  }
+
+  void selectDynoRunner(DynoRunner v) {
+    _selectedDynoRunner = v;
     notifyListeners();
   }
 
-  bool isDynoSelected(Dyno v) => _selectedDyno == v;
+  dynoRunnerStart(DynoRunner runner) async {
+    await runBusyFuture(runner.start(), busyObject: runner);
+    // if (isDynoRunnerSelected(runner)) listenToRunner();
+  }
+
+  void dynoRunnerStop(DynoRunner runner) {
+    runBusyFuture(runner.stop(), busyObject: runner);
+  }
+
+  void dynoRunnerRestart(DynoRunner runner) {
+    runBusyFuture(runner.restart(), busyObject: runner);
+  }
+
+  bool isDynoRunnerSelected(DynoRunner v) => _selectedDynoRunner == v;
+
+  DynoRunner makeRunner(dyno) {
+    final runner = DynoRunner(dyno: dyno);
+    runner.changeStream.listen((_) => notifyListeners());
+    return runner;
+  }
 
   Future init() async {
-    _dynos = await runBusyFuture(loadDynos());
-    if (dynos.isNotEmpty) selectDyno(dynos[0]);
+    final dynos = await runBusyFuture(loadDynos());
+    _dynoRunners = dynos.map(makeRunner).toList();
+    if (dynoRunners.isNotEmpty) selectDynoRunner(dynoRunners[0]);
+  }
+
+  @override
+  void dispose() {
+    for (var runner in dynoRunners) {
+      runner.stop();
+    }
+    super.dispose();
   }
 }

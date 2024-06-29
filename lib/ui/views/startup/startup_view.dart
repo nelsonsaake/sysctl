@@ -18,15 +18,26 @@ class StartupView extends StackedView<StartupViewModel> {
   ) {
     return CenterLayout(
       children: [
-        ClipRRect(
-          borderRadius: kbrLG,
-          child: SizedBox.square(
-            dimension: 100,
-            child: Image.asset(kaLogo),
+        Container(
+          color: kcStone800,
+          width: vw(context),
+          height: vh(context),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ClipRRect(
+                borderRadius: kbrLG,
+                child: SizedBox.square(
+                  dimension: 100,
+                  child: Image.asset(kaLogo),
+                ),
+              ),
+              const Space2(),
+              const Text(ksAppName).fcStone500().fsXL(),
+            ],
           ),
-        ),
-        const Space2(),
-        const Text(ksAppName).fcRed800().fsXL(),
+        )
       ],
     );
   }
