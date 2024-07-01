@@ -46,8 +46,12 @@ class DynoRunner {
   List<String> get arguments => dyno.exec.split(" ").skip(1).toList();
 
   log(String msg) {
-    _out = "$msg\n";
+    _out += "$msg\n";
     notifylisteners("proc(${dyno.name}) $msg");
+  }
+
+  clearLogs() {
+    _out = "";
   }
 
   notifylisteners(event) {
@@ -57,6 +61,8 @@ class DynoRunner {
 
   Future _start() async {
     if (_proc != null) return;
+
+    clearLogs();
 
     _proc = await Process.start(
       dynoCommand,
@@ -78,7 +84,7 @@ class DynoRunner {
       _outStream = null;
       _errStream = null;
       _stream = null;
-      log("cleared!");
+      notifylisteners("cleared!");
     });
   }
 

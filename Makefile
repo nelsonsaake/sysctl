@@ -1,4 +1,4 @@
-.PHONY: gen apk web win ncommit pull ico get starter
+.PHONY: gen apk web win ncommit pull ico get starter o-win
 
 gen:
 	flutter pub run build_runner build --delete-conflicting-outputs
@@ -38,3 +38,6 @@ starter:
 	flutter pub add json_annotation
 	flutter pub add dev:json_serializable
 	flutter pub add dev:flutter_launcher_icons
+
+o-win:
+	flutter build windows

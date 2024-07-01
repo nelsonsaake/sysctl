@@ -29,7 +29,6 @@ class HomeViewModel extends ContextViewmodel {
 
   dynoRunnerStart(DynoRunner runner) async {
     await runBusyFuture(runner.start(), busyObject: runner);
-    // if (isDynoRunnerSelected(runner)) listenToRunner();
   }
 
   void dynoRunnerStop(DynoRunner runner) {
@@ -38,6 +37,10 @@ class HomeViewModel extends ContextViewmodel {
 
   void dynoRunnerRestart(DynoRunner runner) {
     runBusyFuture(runner.restart(), busyObject: runner);
+  }
+
+  void dynoRunnerClearLogs(DynoRunner runner) {
+    runner.clearLogs();
   }
 
   bool isDynoRunnerSelected(DynoRunner v) => _selectedDynoRunner == v;

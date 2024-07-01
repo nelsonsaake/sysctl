@@ -1,5 +1,6 @@
 import 'package:commons/commons.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:stacked/stacked.dart';
 
 import 'home_viewmodel.dart';
@@ -48,7 +49,6 @@ class HomeView extends StackedView<HomeViewModel> {
                       itemCount: viewModel.dynoRunners.length,
                       separatorBuilder: (context, index) => const Space2(),
                       itemBuilder: (context, index) {
-                        //...
                         return DynoRunnerWidget(
                           runner: viewModel.dynoRunners[index],
                         );
@@ -60,15 +60,15 @@ class HomeView extends StackedView<HomeViewModel> {
                   flex: 3,
                   child: Container(
                     color: kcStone800,
-                    child: Column(
-                      children: [
-                        // Header Section
-                        Builder(builder: (context) {
+                    child: Builder(builder: (context) {
+                      final runner = viewModel.selectedDynoRunner;
+                      final out = runner?.out;
+                      return Column(
+                        children: [
                           //...
 
-                          final runner = viewModel.selectedDynoRunner;
-
-                          return Container(
+                          // Header Section
+                          Container(
                             padding: kp4,
                             margin: kp4,
                             decoration: BoxDecoration(
@@ -77,33 +77,51 @@ class HomeView extends StackedView<HomeViewModel> {
                             child: Text(
                               str(runner?.dyno.name ?? "no dyno available"),
                             ).fcStone600().fsXL().center(),
-                          );
-                        }),
+                          ),
 
-                        // Output
-                        Expanded(
-                          child: Builder(builder: (context) {
-                            //...
-
-                            final out = viewModel.selectedDynoRunner?.out;
-
-                            if (out?.isNotEmpty == true) {
-                              return SingleChildScrollView(
+                          // logs
+                          if (out?.isNotEmpty == true)
+                            Expanded(
+                              child: SingleChildScrollView(
                                 child: Container(
                                   padding: kp4,
                                   alignment: Alignment.topLeft,
                                   child: Text(out!).fcStone300(),
                                 ),
-                              );
-                            }
+                              ),
+                            )
+                          else
+                            const Expanded(
+                              child: Center(
+                                child: NoStream(),
+                              ),
+                            ),
 
-                            return const Center(
-                              child: NoStream(),
-                            );
-                          }),
-                        ),
-                      ],
-                    ),
+                          // log controls
+                          Container(
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                              color: kcStone900,
+                              border: kb.t(),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                IconButton(
+                                  icon: const Icon(
+                                    TablerIcons.trash,
+                                    color: kcStone500,
+                                  ),
+                                  onPressed: () {
+                                    viewModel.dynoRunnerClearLogs(runner!);
+                                  },
+                                ),
+                              ],
+                            ),
+                          )
+                        ],
+                      );
+                    }),
                   ),
                 )
               ],
