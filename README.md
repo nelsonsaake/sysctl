@@ -13,3 +13,5 @@ A new Flutter project.
 - make the stream text copiable
 - make links in the stream text clickable 
 - add a button to clear logs
+- use mono space for console section
+- add a zoom feature for console  
