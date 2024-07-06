@@ -1,0 +1,5 @@
+{
+    "name": "Semper Server",
+    "workingDirectory": "C:/Users/user/Desktop/projects/1000 lines/adorngirlies/server",
+    "exec": "go run main.go"
+}
