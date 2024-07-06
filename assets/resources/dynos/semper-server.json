@@ -1,5 +1,5 @@
 {
     "name": "Semper Server",
-    "workingDirectory":"C:/Users/user/Desktop/projects/semper/semper-server",
+    "workingDirectory": "C:/Users/user/Desktop/projects/semper/semper-server",
     "exec": "go run ./cmd/web/main.go"
 }
