@@ -41,6 +41,7 @@ class HomeViewModel extends ContextViewmodel {
 
   void dynoRunnerClearLogs(DynoRunner runner) {
     runner.clearLogs();
+    notifyListeners();
   }
 
   bool isDynoRunnerSelected(DynoRunner v) => _selectedDynoRunner == v;
