@@ -86,7 +86,8 @@ class HomeView extends StackedView<HomeViewModel> {
                                 child: Container(
                                   padding: kp4,
                                   alignment: Alignment.topLeft,
-                                  child: Text(out!).fcStone300(),
+                                  child:
+                                      Text(out!).fcStone300().ffSourceCodePro(),
                                 ),
                               ),
                             )
