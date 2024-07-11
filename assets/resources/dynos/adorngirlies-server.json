@@ -1,5 +1,5 @@
 {
     "name": "Adorngirlies Server",
-    "workingDirectory": "C:/Users/user/Desktop/projects/semper/semper-server",
-    "exec": "go run main.go"
+    "workingDirectory": "C:/Users/user/Desktop/projects/1000 lines/adorngirlies/server",
+    "exec": "cmd /c go run main.go"
 }

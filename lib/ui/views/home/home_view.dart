@@ -31,7 +31,8 @@ class HomeView extends StackedView<HomeViewModel> {
               color: kcStone900,
               border: kb.b(),
             ),
-            child: const Text("Dynos").fcStone300().fsXL().fwSemibold(),
+            child:
+                const SelectableText("Dynos").fcStone300().fsXL().fwSemiBold(),
           ),
 
           Expanded(
@@ -74,7 +75,7 @@ class HomeView extends StackedView<HomeViewModel> {
                             decoration: BoxDecoration(
                               border: kb.b(),
                             ),
-                            child: Text(
+                            child: SelectableText(
                               str(runner?.dyno.name ?? "no dyno available"),
                             ).fcStone600().fsXL().center(),
                           ),
@@ -86,8 +87,10 @@ class HomeView extends StackedView<HomeViewModel> {
                                 child: Container(
                                   padding: kp4,
                                   alignment: Alignment.topLeft,
-                                  child:
-                                      Text(out!).fcStone300().ffSourceCodePro(),
+                                  child: SelectableText(out!)
+                                      .fcStone300()
+                                      .ffSourceCodePro()
+                                      .fsXS(),
                                 ),
                               ),
                             )
