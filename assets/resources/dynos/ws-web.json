@@ -1,0 +1,5 @@
+{
+    "name": "WS",
+    "workingDirectory": "C:/Users/user/Desktop/projects/benchfive/workspacetwo/Workspace-Project-Manager",
+    "exec": "cmd /c make run"
+}

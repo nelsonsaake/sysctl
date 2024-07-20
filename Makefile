@@ -38,6 +38,11 @@ starter:
 	flutter pub add json_annotation
 	flutter pub add dev:json_serializable
 	flutter pub add dev:flutter_launcher_icons
+	flutter pub add isar isar_flutter_libs path_provider
+	flutter pub add -d isar_generator build_runner
 
 build:
 	flutter build windows
+
+caches:
+	flutter pub run build_runner build -d  --build-filter=lib/cache/**

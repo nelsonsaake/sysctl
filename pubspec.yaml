@@ -19,8 +19,12 @@ dependencies:
   freezed_annotation: ^2.4.1
   json_annotation: ^4.9.0
   iconsax_flutter: ^1.0.0
-  flutter_tabler_icons: ^1.31.0
+  flutter_tabler_icons: ^1.35.0
   rxdart: ^0.28.0
+  path_provider: ^2.0.15
+  objectbox: ^4.0.1
+  objectbox_flutter_libs: any
+  get_it: ^7.7.0
 
 dev_dependencies:
   build_runner: ^2.4.11
@@ -32,6 +36,7 @@ dev_dependencies:
   flutter_launcher_icons: "^0.13.1"
   freezed: ^2.5.2
   json_serializable: ^6.8.0
+  objectbox_generator: any
 
 flutter_launcher_icons:
   android: "launcher_icon"

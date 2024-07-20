@@ -1,11 +1,9 @@
 import 'package:commons/commons.dart';
+import 'package:devpanel/ui/widget/row_with_separator.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:stacked/stacked.dart';
 
 import 'home_viewmodel.dart';
-import 'widgets/dyno_runner_widget/dyno_runner_widget.dart';
-import 'widgets/no_stream.dart';
 
 class HomeView extends StackedView<HomeViewModel> {
   const HomeView({Key? key}) : super(key: key);
@@ -25,110 +23,50 @@ class HomeView extends StackedView<HomeViewModel> {
           //...
 
           Container(
-            padding: kp8,
+            padding: kp2,
             width: double.infinity,
             decoration: BoxDecoration(
-              color: kcStone900,
-              border: kb.b(),
+              color: kcNeutral800,
+              border: b(color: kcNeutral950).b(),
             ),
-            child:
-                const SelectableText("Dynos").fcStone300().fsXL().fwSemiBold(),
+            child: const SelectableText("DevPanel")
+                .fcNeutral50()
+                .fsXL()
+                .fwSemiBold(),
           ),
 
           Expanded(
-            child: Row(
-              children: [
-                Flexible(
-                  flex: 2,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: kcStone900,
-                      border: kb.r(),
-                    ),
-                    child: ListView.separated(
-                      padding: kpt16,
-                      itemCount: viewModel.dynoRunners.length,
-                      separatorBuilder: (context, index) => const Space2(),
-                      itemBuilder: (context, index) {
-                        return DynoRunnerWidget(
-                          runner: viewModel.dynoRunners[index],
-                        );
-                      },
-                    ),
-                  ),
-                ),
-                Expanded(
-                  flex: 3,
-                  child: Container(
-                    color: kcStone800,
-                    child: Builder(builder: (context) {
-                      final runner = viewModel.selectedDynoRunner;
-                      final out = runner?.out;
-                      return Column(
-                        children: [
-                          //...
-
-                          // Header Section
-                          Container(
-                            padding: kp4,
-                            margin: kp4,
-                            decoration: BoxDecoration(
-                              border: kb.b(),
+            child: Container(
+              color: kcNeutral700,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  RowWithSeparator(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      for (final route in viewModel.routes.entries)
+                        MouseRegion(
+                          cursor: SystemMouseCursors.click,
+                          child: GestureDetector(
+                            onTap: () => viewModel.nav.navigateTo(route.value),
+                            child: Container(
+                              padding: kp8,
+                              width: kw60,
+                              decoration: BoxDecoration(
+                                color: kcNeutral800,
+                                borderRadius: kbrMD,
+                              ),
+                              child: SelectableText(route.key)
+                                  .fcNeutral50()
+                                  .fsXL()
+                                  .fwSemiBold(),
                             ),
-                            child: SelectableText(
-                              str(runner?.dyno.name ?? "no dyno available"),
-                            ).fcStone600().fsXL().center(),
                           ),
-
-                          // logs
-                          if (out?.isNotEmpty == true)
-                            Expanded(
-                              child: SingleChildScrollView(
-                                child: Container(
-                                  padding: kp4,
-                                  alignment: Alignment.topLeft,
-                                  child: SelectableText(out!)
-                                      .fcStone300()
-                                      .ffSourceCodePro()
-                                      .fsXS(),
-                                ),
-                              ),
-                            )
-                          else
-                            const Expanded(
-                              child: Center(
-                                child: NoStream(),
-                              ),
-                            ),
-
-                          // log controls
-                          Container(
-                            width: double.infinity,
-                            decoration: BoxDecoration(
-                              color: kcStone900,
-                              border: kb.t(),
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                IconButton(
-                                  icon: const Icon(
-                                    TablerIcons.trash,
-                                    color: kcStone500,
-                                  ),
-                                  onPressed: () {
-                                    viewModel.dynoRunnerClearLogs(runner!);
-                                  },
-                                ),
-                              ],
-                            ),
-                          )
-                        ],
-                      );
-                    }),
-                  ),
-                )
-              ],
+                        ),
+                    ],
+                  )
+                ],
+              ),
             ),
           )
         ],

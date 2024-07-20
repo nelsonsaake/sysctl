@@ -1,15 +1,15 @@
 import 'package:commons/commons.dart';
-import 'package:devpanel/ui/views/home/home_viewmodel.dart';
+import 'package:devpanel/ui/views/makefiles/makefiles_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
-class NoStream extends ViewModelWidget<HomeViewModel> {
+class NoStream extends ViewModelWidget<MakefilesViewModel> {
   const NoStream({
     super.key,
   });
 
   @override
-  Widget build(BuildContext context, HomeViewModel viewModel) {
+  Widget build(BuildContext context, MakefilesViewModel viewModel) {
     return const Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,

@@ -1,6 +1,6 @@
 import 'package:commons/commons.dart';
 import 'package:devpanel/dynos/dyno_runner.dart';
-import 'package:devpanel/ui/views/home/home_viewmodel.dart';
+import 'package:devpanel/ui/views/dynos/dynos_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
@@ -8,12 +8,12 @@ import 'widgets/restart_button.dart';
 import 'widgets/start_button.dart';
 import 'widgets/stop_button.dart';
 
-class DynoRunnerWidget extends ViewModelWidget<HomeViewModel> {
+class DynoRunnerWidget extends ViewModelWidget<DynosViewModel> {
   const DynoRunnerWidget({super.key, required this.runner});
 
   final DynoRunner runner;
   @override
-  Widget build(BuildContext context, HomeViewModel viewModel) {
+  Widget build(BuildContext context, DynosViewModel viewModel) {
     const fgColor = kcStone300;
     final isSelected = viewModel.isDynoRunnerSelected(runner);
     final bgColor = isSelected ? kcRed100.withOpacity(0.05) : null;
