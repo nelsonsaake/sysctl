@@ -18,7 +18,7 @@ class StopButton extends ViewModelWidget<DynosViewModel> {
     return IconButton(
       icon: Icon(
         TablerIcons.player_stop,
-        color: runner.isActive ? kcRed600 : kcStone500,
+        color: runner.isActive ? kcRed600 : kcNeutral500,
       ),
       onPressed: () => viewModel.dynoRunnerStop(runner),
     );

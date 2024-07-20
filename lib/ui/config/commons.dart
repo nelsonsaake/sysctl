@@ -4,7 +4,7 @@ import 'package:devpanel/ui/config/theme.dart';
 setupCommons() {
   //...
 
-  commonsConfigBorderColor = kcStone700;
+  commonsConfigBorderColor = kcNeutral700;
 
   commonsConfigBorderWith = 1;
 

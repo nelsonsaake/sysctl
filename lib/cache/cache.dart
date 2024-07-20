@@ -1,12 +1,12 @@
 import 'package:devpanel/objectbox.g.dart';
 import 'package:devpanel/ui/config/setup.dart';
 
-import 'commands.dart';
+import 'sh.dart';
 
 class Cache {
   //...
 
   static Store get _store => configLocator<Store>();
 
-  static Box<Commands> get navigationStack => _store.box<Commands>();
+  static Box<SH> get shDB => _store.box<SH>();
 }

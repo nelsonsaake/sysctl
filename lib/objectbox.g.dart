@@ -14,31 +14,36 @@ import 'package:objectbox/internal.dart'
 import 'package:objectbox/objectbox.dart' as obx;
 import 'package:objectbox_flutter_libs/objectbox_flutter_libs.dart';
 
-import 'cache/commands.dart';
+import 'cache/sh.dart';
 
 export 'package:objectbox/objectbox.dart'; // so that callers only have to import this file
 
 final _entities = <obx_int.ModelEntity>[
   obx_int.ModelEntity(
-      id: const obx_int.IdUid(3, 4556752641519628512),
-      name: 'Commands',
-      lastPropertyId: const obx_int.IdUid(3, 1731993188861509004),
+      id: const obx_int.IdUid(4, 4607642945918667299),
+      name: 'SH',
+      lastPropertyId: const obx_int.IdUid(4, 52578662695267284),
       flags: 0,
       properties: <obx_int.ModelProperty>[
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(1, 2311147416860166105),
+            id: const obx_int.IdUid(1, 2190136145806031461),
             name: 'id',
             type: 6,
             flags: 1),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(2, 8629672563888636011),
+            id: const obx_int.IdUid(2, 4547551376055391427),
+            name: 'name',
+            type: 9,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(3, 3834131366561005306),
             name: 'path',
             type: 9,
             flags: 0),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(3, 1731993188861509004),
-            name: 'commands',
-            type: 30,
+            id: const obx_int.IdUid(4, 52578662695267284),
+            name: 'command',
+            type: 9,
             flags: 0)
       ],
       relations: <obx_int.ModelRelation>[],
@@ -80,11 +85,15 @@ Future<obx.Store> openStore(
 obx_int.ModelDefinition getObjectBoxModel() {
   final model = obx_int.ModelInfo(
       entities: _entities,
-      lastEntityId: const obx_int.IdUid(3, 4556752641519628512),
+      lastEntityId: const obx_int.IdUid(4, 4607642945918667299),
       lastIndexId: const obx_int.IdUid(0, 0),
       lastRelationId: const obx_int.IdUid(0, 0),
       lastSequenceId: const obx_int.IdUid(0, 0),
-      retiredEntityUids: const [2964661581822798987, 2856550815914277003],
+      retiredEntityUids: const [
+        2964661581822798987,
+        2856550815914277003,
+        4556752641519628512
+      ],
       retiredIndexUids: const [],
       retiredPropertyUids: const [
         2270020684920195074,
@@ -92,7 +101,10 @@ obx_int.ModelDefinition getObjectBoxModel() {
         4374647768547312965,
         7564100290707879656,
         3113479617784048105,
-        4208421097244287438
+        4208421097244287438,
+        2311147416860166105,
+        8629672563888636011,
+        1731993188861509004
       ],
       retiredRelationUids: const [],
       modelVersion: 5,
@@ -100,35 +112,40 @@ obx_int.ModelDefinition getObjectBoxModel() {
       version: 1);
 
   final bindings = <Type, obx_int.EntityDefinition>{
-    Commands: obx_int.EntityDefinition<Commands>(
+    SH: obx_int.EntityDefinition<SH>(
         model: _entities[0],
-        toOneRelations: (Commands object) => [],
-        toManyRelations: (Commands object) => {},
-        getId: (Commands object) => object.id,
-        setId: (Commands object, int id) {
+        toOneRelations: (SH object) => [],
+        toManyRelations: (SH object) => {},
+        getId: (SH object) => object.id,
+        setId: (SH object, int id) {
           object.id = id;
         },
-        objectToFB: (Commands object, fb.Builder fbb) {
-          final pathOffset = fbb.writeString(object.path);
-          final commandsOffset = fbb.writeList(
-              object.commands.map(fbb.writeString).toList(growable: false));
-          fbb.startTable(4);
+        objectToFB: (SH object, fb.Builder fbb) {
+          final nameOffset =
+              object.name == null ? null : fbb.writeString(object.name!);
+          final pathOffset =
+              object.path == null ? null : fbb.writeString(object.path!);
+          final commandOffset =
+              object.command == null ? null : fbb.writeString(object.command!);
+          fbb.startTable(5);
           fbb.addInt64(0, object.id);
-          fbb.addOffset(1, pathOffset);
-          fbb.addOffset(2, commandsOffset);
+          fbb.addOffset(1, nameOffset);
+          fbb.addOffset(2, pathOffset);
+          fbb.addOffset(3, commandOffset);
           fbb.finish(fbb.endTable());
           return object.id;
         },
         objectFromFB: (obx.Store store, ByteData fbData) {
           final buffer = fb.BufferContext(fbData);
           final rootOffset = buffer.derefObject(0);
+          final nameParam = const fb.StringReader(asciiOptimization: true)
+              .vTableGetNullable(buffer, rootOffset, 6);
           final pathParam = const fb.StringReader(asciiOptimization: true)
-              .vTableGet(buffer, rootOffset, 6, '');
-          final commandsParam = const fb.ListReader<String>(
-                  fb.StringReader(asciiOptimization: true),
-                  lazy: false)
-              .vTableGet(buffer, rootOffset, 8, []);
-          final object = Commands(path: pathParam, commands: commandsParam)
+              .vTableGetNullable(buffer, rootOffset, 8);
+          final commandParam = const fb.StringReader(asciiOptimization: true)
+              .vTableGetNullable(buffer, rootOffset, 10);
+          final object = SH(
+              name: nameParam, path: pathParam, command: commandParam)
             ..id = const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0);
 
           return object;
@@ -138,17 +155,18 @@ obx_int.ModelDefinition getObjectBoxModel() {
   return obx_int.ModelDefinition(model, bindings);
 }
 
-/// [Commands] entity fields to define ObjectBox queries.
-class Commands_ {
-  /// See [Commands.id].
-  static final id =
-      obx.QueryIntegerProperty<Commands>(_entities[0].properties[0]);
+/// [SH] entity fields to define ObjectBox queries.
+class SH_ {
+  /// See [SH.id].
+  static final id = obx.QueryIntegerProperty<SH>(_entities[0].properties[0]);
 
-  /// See [Commands.path].
-  static final path =
-      obx.QueryStringProperty<Commands>(_entities[0].properties[1]);
+  /// See [SH.name].
+  static final name = obx.QueryStringProperty<SH>(_entities[0].properties[1]);
 
-  /// See [Commands.commands].
-  static final commands =
-      obx.QueryStringVectorProperty<Commands>(_entities[0].properties[2]);
+  /// See [SH.path].
+  static final path = obx.QueryStringProperty<SH>(_entities[0].properties[2]);
+
+  /// See [SH.command].
+  static final command =
+      obx.QueryStringProperty<SH>(_entities[0].properties[3]);
 }

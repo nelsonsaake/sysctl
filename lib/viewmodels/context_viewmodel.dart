@@ -8,4 +8,6 @@ class ContextViewModel extends BaseViewModel {
   //...
 
   NavigationService get nav => locator<NavigationService>();
+
+  DialogService get dialogs => locator<DialogService>();
 }

@@ -54,7 +54,7 @@ class NoStreamIllustration extends StatelessWidget {
                 height: 2,
                 margin: ml(line[0]).r(line[1]),
                 decoration: BoxDecoration(
-                  color: kcStone600,
+                  color: kcNeutral600,
                   borderRadius: br(4),
                 ),
               ),

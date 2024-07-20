@@ -19,7 +19,7 @@ class StartupView extends StackedView<StartupViewModel> {
     return CenterLayout(
       children: [
         Container(
-          color: kcStone800,
+          color: kcNeutral800,
           width: vw(context),
           height: vh(context),
           child: Column(
@@ -34,7 +34,7 @@ class StartupView extends StackedView<StartupViewModel> {
                 ),
               ),
               const Space2(),
-              const Text(ksAppName).fcStone500().fsXL(),
+              const Text(ksAppName).fcNeutral500().fsXL(),
             ],
           ),
         )

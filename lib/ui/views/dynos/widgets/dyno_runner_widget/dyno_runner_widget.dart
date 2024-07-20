@@ -14,7 +14,7 @@ class DynoRunnerWidget extends ViewModelWidget<DynosViewModel> {
   final DynoRunner runner;
   @override
   Widget build(BuildContext context, DynosViewModel viewModel) {
-    const fgColor = kcStone300;
+    const fgColor = kcNeutral300;
     final isSelected = viewModel.isDynoRunnerSelected(runner);
     final bgColor = isSelected ? kcRed100.withOpacity(0.05) : null;
 

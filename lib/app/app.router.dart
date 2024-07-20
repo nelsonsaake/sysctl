@@ -7,7 +7,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:devpanel/ui/views/dynos/dynos_view.dart' as _i3;
 import 'package:devpanel/ui/views/home/home_view.dart' as _i2;
-import 'package:devpanel/ui/views/makefiles/makefiles_view.dart' as _i4;
+import 'package:devpanel/ui/views/run/run_view.dart' as _i4;
 import 'package:devpanel/ui/views/startup/startup_view.dart' as _i5;
 import 'package:flutter/material.dart' as _i6;
 import 'package:flutter/material.dart';
@@ -19,14 +19,14 @@ class Routes {
 
   static const dynosView = '/dynos-view';
 
-  static const makefilesView = '/makefiles-view';
+  static const runView = '/run-view';
 
   static const startupView = '/startup-view';
 
   static const all = <String>{
     homeView,
     dynosView,
-    makefilesView,
+    runView,
     startupView,
   };
 }
@@ -42,8 +42,8 @@ class StackedRouter extends _i1.RouterBase {
       page: _i3.DynosView,
     ),
     _i1.RouteDef(
-      Routes.makefilesView,
-      page: _i4.MakefilesView,
+      Routes.runView,
+      page: _i4.RunView,
     ),
     _i1.RouteDef(
       Routes.startupView,
@@ -64,9 +64,9 @@ class StackedRouter extends _i1.RouterBase {
         settings: data,
       );
     },
-    _i4.MakefilesView: (data) {
+    _i4.RunView: (data) {
       return _i6.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i4.MakefilesView(),
+        builder: (context) => const _i4.RunView(),
         settings: data,
       );
     },
@@ -114,14 +114,14 @@ extension NavigatorStateExtension on _i7.NavigationService {
         transition: transition);
   }
 
-  Future<dynamic> navigateToMakefilesView([
+  Future<dynamic> navigateToRunView([
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
   ]) async {
-    return navigateTo<dynamic>(Routes.makefilesView,
+    return navigateTo<dynamic>(Routes.runView,
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -170,14 +170,14 @@ extension NavigatorStateExtension on _i7.NavigationService {
         transition: transition);
   }
 
-  Future<dynamic> replaceWithMakefilesView([
+  Future<dynamic> replaceWithRunView([
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
   ]) async {
-    return replaceWith<dynamic>(Routes.makefilesView,
+    return replaceWith<dynamic>(Routes.runView,
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,

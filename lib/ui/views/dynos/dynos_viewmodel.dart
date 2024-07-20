@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:devpanel/dynos/dyno_runner.dart';
 import 'package:devpanel/dynos/load_dynos.dart';
-import 'package:devpanel/ui/viewmodels/context_viewmodel.dart';
+import 'package:devpanel/viewmodels/context_viewmodel.dart';
 
 class DynosViewModel extends ContextViewModel {
   //...
