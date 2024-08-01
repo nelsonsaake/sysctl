@@ -20,6 +20,7 @@ Dyno _$DynoFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Dyno {
+  int? get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get workingDirectory => throw _privateConstructorUsedError;
   String get exec => throw _privateConstructorUsedError;
@@ -34,7 +35,7 @@ abstract class $DynoCopyWith<$Res> {
   factory $DynoCopyWith(Dyno value, $Res Function(Dyno) then) =
       _$DynoCopyWithImpl<$Res, Dyno>;
   @useResult
-  $Res call({String name, String workingDirectory, String exec});
+  $Res call({int? id, String name, String workingDirectory, String exec});
 }
 
 /// @nodoc
@@ -50,11 +51,16 @@ class _$DynoCopyWithImpl<$Res, $Val extends Dyno>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = freezed,
     Object? name = null,
     Object? workingDirectory = null,
     Object? exec = null,
   }) {
     return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -78,7 +84,7 @@ abstract class _$$DynoImplCopyWith<$Res> implements $DynoCopyWith<$Res> {
       __$$DynoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, String workingDirectory, String exec});
+  $Res call({int? id, String name, String workingDirectory, String exec});
 }
 
 /// @nodoc
@@ -91,11 +97,16 @@ class __$$DynoImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = freezed,
     Object? name = null,
     Object? workingDirectory = null,
     Object? exec = null,
   }) {
     return _then(_$DynoImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -116,11 +127,16 @@ class __$$DynoImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$DynoImpl with DiagnosticableTreeMixin implements _Dyno {
   _$DynoImpl(
-      {required this.name, required this.workingDirectory, required this.exec});
+      {required this.id,
+      required this.name,
+      required this.workingDirectory,
+      required this.exec});
 
   factory _$DynoImpl.fromJson(Map<String, dynamic> json) =>
       _$$DynoImplFromJson(json);
 
+  @override
+  final int? id;
   @override
   final String name;
   @override
@@ -130,7 +146,7 @@ class _$DynoImpl with DiagnosticableTreeMixin implements _Dyno {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Dyno(name: $name, workingDirectory: $workingDirectory, exec: $exec)';
+    return 'Dyno(id: $id, name: $name, workingDirectory: $workingDirectory, exec: $exec)';
   }
 
   @override
@@ -138,6 +154,7 @@ class _$DynoImpl with DiagnosticableTreeMixin implements _Dyno {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'Dyno'))
+      ..add(DiagnosticsProperty('id', id))
       ..add(DiagnosticsProperty('name', name))
       ..add(DiagnosticsProperty('workingDirectory', workingDirectory))
       ..add(DiagnosticsProperty('exec', exec));
@@ -148,6 +165,7 @@ class _$DynoImpl with DiagnosticableTreeMixin implements _Dyno {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$DynoImpl &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.workingDirectory, workingDirectory) ||
                 other.workingDirectory == workingDirectory) &&
@@ -156,7 +174,8 @@ class _$DynoImpl with DiagnosticableTreeMixin implements _Dyno {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, name, workingDirectory, exec);
+  int get hashCode =>
+      Object.hash(runtimeType, id, name, workingDirectory, exec);
 
   @JsonKey(ignore: true)
   @override
@@ -174,12 +193,15 @@ class _$DynoImpl with DiagnosticableTreeMixin implements _Dyno {
 
 abstract class _Dyno implements Dyno {
   factory _Dyno(
-      {required final String name,
+      {required final int? id,
+      required final String name,
       required final String workingDirectory,
       required final String exec}) = _$DynoImpl;
 
   factory _Dyno.fromJson(Map<String, dynamic> json) = _$DynoImpl.fromJson;
 
+  @override
+  int? get id;
   @override
   String get name;
   @override

@@ -6,7 +6,7 @@ import 'dyno.dart';
 const String _dynosDir =
     r"C:\Users\user\Desktop\projects\1000 lines\devpanel\assets\resources\dynos";
 
-Future<List<Dyno>> loadDynos() async {
+Future<List<Dyno>> loadDynoFiles() async {
   final dir = Directory(_dynosDir);
   final res = <Dyno>[];
 

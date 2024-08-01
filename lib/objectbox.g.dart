@@ -22,7 +22,7 @@ final _entities = <obx_int.ModelEntity>[
   obx_int.ModelEntity(
       id: const obx_int.IdUid(4, 4607642945918667299),
       name: 'SH',
-      lastPropertyId: const obx_int.IdUid(4, 52578662695267284),
+      lastPropertyId: const obx_int.IdUid(6, 70093328072010060),
       flags: 0,
       properties: <obx_int.ModelProperty>[
         obx_int.ModelProperty(
@@ -36,13 +36,13 @@ final _entities = <obx_int.ModelEntity>[
             type: 9,
             flags: 0),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(3, 3834131366561005306),
-            name: 'path',
+            id: const obx_int.IdUid(5, 6152814258557289439),
+            name: 'workingDirectory',
             type: 9,
             flags: 0),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(4, 52578662695267284),
-            name: 'command',
+            id: const obx_int.IdUid(6, 70093328072010060),
+            name: 'exec',
             type: 9,
             flags: 0)
       ],
@@ -104,7 +104,9 @@ obx_int.ModelDefinition getObjectBoxModel() {
         4208421097244287438,
         2311147416860166105,
         8629672563888636011,
-        1731993188861509004
+        1731993188861509004,
+        3834131366561005306,
+        52578662695267284
       ],
       retiredRelationUids: const [],
       modelVersion: 5,
@@ -121,17 +123,15 @@ obx_int.ModelDefinition getObjectBoxModel() {
           object.id = id;
         },
         objectToFB: (SH object, fb.Builder fbb) {
-          final nameOffset =
-              object.name == null ? null : fbb.writeString(object.name!);
-          final pathOffset =
-              object.path == null ? null : fbb.writeString(object.path!);
-          final commandOffset =
-              object.command == null ? null : fbb.writeString(object.command!);
-          fbb.startTable(5);
+          final nameOffset = fbb.writeString(object.name);
+          final workingDirectoryOffset =
+              fbb.writeString(object.workingDirectory);
+          final execOffset = fbb.writeString(object.exec);
+          fbb.startTable(7);
           fbb.addInt64(0, object.id);
           fbb.addOffset(1, nameOffset);
-          fbb.addOffset(2, pathOffset);
-          fbb.addOffset(3, commandOffset);
+          fbb.addOffset(4, workingDirectoryOffset);
+          fbb.addOffset(5, execOffset);
           fbb.finish(fbb.endTable());
           return object.id;
         },
@@ -139,13 +139,16 @@ obx_int.ModelDefinition getObjectBoxModel() {
           final buffer = fb.BufferContext(fbData);
           final rootOffset = buffer.derefObject(0);
           final nameParam = const fb.StringReader(asciiOptimization: true)
-              .vTableGetNullable(buffer, rootOffset, 6);
-          final pathParam = const fb.StringReader(asciiOptimization: true)
-              .vTableGetNullable(buffer, rootOffset, 8);
-          final commandParam = const fb.StringReader(asciiOptimization: true)
-              .vTableGetNullable(buffer, rootOffset, 10);
+              .vTableGet(buffer, rootOffset, 6, '');
+          final workingDirectoryParam =
+              const fb.StringReader(asciiOptimization: true)
+                  .vTableGet(buffer, rootOffset, 12, '');
+          final execParam = const fb.StringReader(asciiOptimization: true)
+              .vTableGet(buffer, rootOffset, 14, '');
           final object = SH(
-              name: nameParam, path: pathParam, command: commandParam)
+              name: nameParam,
+              workingDirectory: workingDirectoryParam,
+              exec: execParam)
             ..id = const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0);
 
           return object;
@@ -163,10 +166,10 @@ class SH_ {
   /// See [SH.name].
   static final name = obx.QueryStringProperty<SH>(_entities[0].properties[1]);
 
-  /// See [SH.path].
-  static final path = obx.QueryStringProperty<SH>(_entities[0].properties[2]);
+  /// See [SH.workingDirectory].
+  static final workingDirectory =
+      obx.QueryStringProperty<SH>(_entities[0].properties[2]);
 
-  /// See [SH.command].
-  static final command =
-      obx.QueryStringProperty<SH>(_entities[0].properties[3]);
+  /// See [SH.exec].
+  static final exec = obx.QueryStringProperty<SH>(_entities[0].properties[3]);
 }

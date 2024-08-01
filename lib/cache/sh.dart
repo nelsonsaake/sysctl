@@ -1,6 +1,6 @@
+import 'package:commons/helpers/str.dart';
+import 'package:devpanel/dynos/dyno.dart';
 import 'package:objectbox/objectbox.dart';
-
-// part 'navigation_stack.g.dart';
 
 @Entity()
 class SH {
@@ -9,11 +9,18 @@ class SH {
   @Id()
   int id = 0;
 
-  final String? name;
+  final String name;
 
-  final String? path;
+  final String workingDirectory;
 
-  final String? command;
+  final String exec;
 
-  SH({this.name, this.path, this.command});
+  SH({required this.name, required this.workingDirectory, required this.exec});
+
+  Dyno toDyno() => Dyno(
+        id: id,
+        name: str(name),
+        workingDirectory: str(workingDirectory),
+        exec: str(exec),
+      );
 }

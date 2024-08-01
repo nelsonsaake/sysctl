@@ -7,6 +7,7 @@ part 'dyno.g.dart';
 @freezed
 class Dyno with _$Dyno {
   factory Dyno({
+    required int? id,
     required String name,
     required String workingDirectory,
     required String exec,

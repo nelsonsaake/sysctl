@@ -45,4 +45,4 @@ build:
 	flutter build windows
 
 caches:
-	flutter pub run build_runner build -d  --build-filter=lib/cache/**
+	flutter pub run build_runner build -d --build-filter=lib/cache/**

@@ -20,7 +20,7 @@ class RestartButton extends ViewModelWidget<DynosViewModel> {
       child: IconButton(
         icon: Icon(
           TablerIcons.rotate,
-          color: runner.isActive ? kcYellow600 : kcNeutral500,
+          color: runner.isActive ? kcYellow600 : kcNeutral600,
         ),
         onPressed: () => viewModel.dynoRunnerRestart(runner),
       ),

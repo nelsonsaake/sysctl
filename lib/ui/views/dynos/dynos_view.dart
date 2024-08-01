@@ -1,4 +1,6 @@
 import 'package:commons/commons.dart';
+import 'package:commons/ui/border.dart';
+import 'package:commons/ui/ui.dart';
 import 'package:devpanel/ui/views/_layouts/layout.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
@@ -26,45 +28,74 @@ class DynosView extends StackedView<DynosViewModel> {
           children: [
             //...
 
-            Container(
-              padding: kp8,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: kcNeutral900,
-                border: kb.b(),
-              ),
-              child: const SelectableText("Dynos")
-                  .fcNeutral300()
-                  .fsXL()
-                  .fwSemiBold(),
-            ),
-
             Expanded(
               child: Row(
                 children: [
                   Flexible(
                     flex: 2,
                     child: Container(
-                      decoration: BoxDecoration(
-                        color: kcNeutral900,
-                        border: kb.r(),
-                      ),
-                      child: ListView.separated(
-                        padding: kpt16,
-                        itemCount: viewModel.dynoRunners.length,
-                        separatorBuilder: (context, index) => const Space2(),
-                        itemBuilder: (context, index) {
-                          return DynoRunnerWidget(
-                            runner: viewModel.dynoRunners[index],
-                          );
-                        },
+                      color: kcNeutral900,
+                      child: Column(
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                              color: kcNeutral950,
+                              border: b(color: kcNeutral800).b(),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                IconButton(
+                                  icon: const Icon(
+                                    TablerIcons.search,
+                                    color: kcNeutral600,
+                                  ),
+                                  onPressed: viewModel.showCreateSHDialog,
+                                ),
+                                const Expanded(
+                                  child: TextField(
+                                    decoration: InputDecoration(
+                                      fillColor: kcNeutral950,
+                                      border: InputBorder.none,
+                                      enabledBorder: InputBorder.none,
+                                      focusedBorder: InputBorder.none,
+                                    ),
+                                  ),
+                                ),
+                                IconButton(
+                                  icon: const Icon(
+                                    TablerIcons.plus,
+                                    color: kcNeutral600,
+                                  ),
+                                  onPressed: viewModel.showCreateSHDialog,
+                                )
+                              ],
+                            ),
+                          ),
+                          Expanded(
+                            child: ListView.separated(
+                              controller: viewModel.scrollController,
+                              itemCount: viewModel.dynoRunners.length,
+                              separatorBuilder: (context, index) =>
+                                  const Space2(),
+                              itemBuilder: (context, index) {
+                                return DynoRunnerWidget(
+                                  runner: viewModel.dynoRunners[index],
+                                );
+                              },
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
                   Expanded(
                     flex: 3,
                     child: Container(
-                      color: kcNeutral800,
+                      decoration: BoxDecoration(
+                        color: kcNeutral800,
+                        border: kb.l(),
+                      ),
                       child: Builder(builder: (context) {
                         final runner = viewModel.selectedDynoRunner;
                         final out = runner?.out;
@@ -117,8 +148,8 @@ class DynosView extends StackedView<DynosViewModel> {
                                 children: [
                                   IconButton(
                                     icon: const Icon(
-                                      TablerIcons.trash,
-                                      color: kcNeutral500,
+                                      TablerIcons.trash_filled,
+                                      color: kcNeutral400,
                                     ),
                                     onPressed: () {
                                       viewModel.dynoRunnerClearLogs(runner!);

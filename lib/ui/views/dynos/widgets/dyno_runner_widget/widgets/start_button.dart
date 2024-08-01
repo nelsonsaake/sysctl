@@ -18,7 +18,7 @@ class StartButton extends ViewModelWidget<DynosViewModel> {
     return IconButton(
       icon: Icon(
         TablerIcons.player_play,
-        color: runner.isActive ? kcGreen600 : kcNeutral500,
+        color: runner.isActive ? kcGreen600 : kcNeutral600,
       ),
       onPressed: () => viewModel.dynoRunnerStart(runner),
     );

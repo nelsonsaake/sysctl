@@ -1,7 +1,6 @@
 # devpanel
 
-A new Flutter project.
-"# devpanel" 
+Inspired by linux systemctl. It allows you to start, stop, restart, check status and see logs. Amount other things.
 
 # TODOS
 
@@ -10,8 +9,8 @@ A new Flutter project.
 	with the posibility to kill a process running on a port
 - load all command from a make file into a button 
 - let error streams be red
-- make the stream text copiable
 - make links in the stream text clickable 
-- add a button to clear logs
-- use mono space for console section
 - add a zoom feature for console  
+- load commands from files from makefile
+- allow for edit and delete of services
+- allow for search

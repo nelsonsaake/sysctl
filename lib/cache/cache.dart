@@ -8,5 +8,5 @@ class Cache {
 
   static Store get _store => configLocator<Store>();
 
-  static Box<SH> get shDB => _store.box<SH>();
+  static Box<SH> get sh => _store.box<SH>();
 }
