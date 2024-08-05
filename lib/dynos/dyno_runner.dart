@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:commons/helpers/str.dart';
+import 'package:devpanel/helpers/md.dart';
 import 'package:flutter/material.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -46,7 +47,7 @@ class DynoRunner {
   List<String> get arguments => dyno.exec.split(" ").skip(1).toList();
 
   log(String msg) {
-    _out += "$msg\n";
+    _out += toMD("$msg\n");
     notifylisteners("proc(${dyno.name}) $msg");
   }
 
@@ -55,7 +56,7 @@ class DynoRunner {
   }
 
   notifylisteners(event) {
-    debugPrint("$event");
+    // debugPrint("$event");
     changeStreamController.add(event);
   }
 
@@ -70,12 +71,13 @@ class DynoRunner {
       workingDirectory: dyno.workingDirectory,
     );
 
-    _outStream = _proc?.stdout.transform(utf8.decoder).asBroadcastStream();
+    _outStream =
+        _proc?.stdout.transform(const AsciiDecoder()).asBroadcastStream();
     _errStream = _proc?.stderr.transform(utf8.decoder).asBroadcastStream();
     _stream = _outStream?.mergeWith([if (_errStream != null) _errStream!]);
 
     _stream?.listen((event) {
-      _out += event;
+      _out += toMD(event);
       notifylisteners(event);
     });
 

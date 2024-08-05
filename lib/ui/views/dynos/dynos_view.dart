@@ -1,14 +1,13 @@
 import 'package:commons/commons.dart';
-import 'package:commons/ui/border.dart';
-import 'package:commons/ui/ui.dart';
 import 'package:devpanel/ui/views/_layouts/layout.dart';
+import 'package:devpanel/ui/views/dynos/widgets/log_stream.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:stacked/stacked.dart';
 
 import 'dynos_viewmodel.dart';
 import 'widgets/dyno_runner_widget/dyno_runner_widget.dart';
-import 'widgets/no_stream.dart';
+import 'widgets/no_log_stream.dart';
 
 class DynosView extends StackedView<DynosViewModel> {
   const DynosView({Key? key}) : super(key: key);
@@ -116,25 +115,11 @@ class DynosView extends StackedView<DynosViewModel> {
                             ),
 
                             // logs
-                            if (out?.isNotEmpty == true)
-                              Expanded(
-                                child: SingleChildScrollView(
-                                  child: Container(
-                                    padding: kp4,
-                                    alignment: Alignment.topLeft,
-                                    child: SelectableText(out!)
-                                        .fcNeutral300()
-                                        .ffSourceCodePro()
-                                        .fsXS(),
-                                  ),
-                                ),
-                              )
-                            else
-                              const Expanded(
-                                child: Center(
-                                  child: NoStream(),
-                                ),
-                              ),
+                            Expanded(
+                              child: (out?.isNotEmpty == true)
+                                  ? const LogStream()
+                                  : const Center(child: NoLogStream()),
+                            ),
 
                             // log controls
                             Container(

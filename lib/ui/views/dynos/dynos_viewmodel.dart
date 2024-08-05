@@ -12,6 +12,8 @@ import 'package:flutter/material.dart';
 class DynosViewModel extends ContextViewModel {
   //...
 
+  final scrollController = ScrollController();
+
   List<DynoRunner>? _dynoRunners;
 
   List<DynoRunner> get dynoRunners => _dynoRunners ?? [];
@@ -20,9 +22,9 @@ class DynosViewModel extends ContextViewModel {
 
   DynoRunner? get selectedDynoRunner => _selectedDynoRunner;
 
-  StreamSubscription? _sub;
+  String? get out => _selectedDynoRunner?.out;
 
-  final scrollController = ScrollController();
+  StreamSubscription? _sub;
 
   bool isDynoRunnerSelected(DynoRunner v) => _selectedDynoRunner == v;
 

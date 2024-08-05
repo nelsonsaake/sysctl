@@ -3,8 +3,8 @@ import 'package:devpanel/ui/views/dynos/dynos_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
-class NoStream extends ViewModelWidget<DynosViewModel> {
-  const NoStream({
+class NoLogStream extends ViewModelWidget<DynosViewModel> {
+  const NoLogStream({
     super.key,
   });
 

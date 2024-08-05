@@ -14,3 +14,5 @@ Inspired by linux systemctl. It allows you to start, stop, restart, check status
 - load commands from files from makefile
 - allow for edit and delete of services
 - allow for search
+- scroll log to end 
+- show popup on right click

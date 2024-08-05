@@ -26,6 +26,8 @@ dependencies:
   objectbox_flutter_libs: any
   get_it: ^7.7.0
   google_fonts: ^6.2.1
+  ansi_up: ^1.0.0
+  flutter_markdown: ^0.7.3
 
 dev_dependencies:
   build_runner: ^2.4.11
