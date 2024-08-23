@@ -11,25 +11,27 @@ class LogStream extends ViewModelWidget<DynosViewModel> {
   Widget build(BuildContext context, DynosViewModel viewModel) {
     return SingleChildScrollView(
       child: Container(
-        // color: kcNeutral100,
         padding: kp4,
         alignment: Alignment.topLeft,
-        child: false
-            ? MarkdownBody(
-                data: str(viewModel.out),
-                selectable: true,
-                styleSheet: MarkdownStyleSheet(
-                  p: const SelectableText("")
-                      .fcNeutral300()
-                      .ffSourceCodePro()
-                      .fsXS()
-                      .style,
-                ),
-              )
-            : SelectableText(str(viewModel.out))
-                .fcNeutral300()
-                .ffSourceCodePro()
-                .fsXS(),
+        child: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: false
+              ? MarkdownBody(
+                  data: str(viewModel.out),
+                  selectable: true,
+                  styleSheet: MarkdownStyleSheet(
+                    p: const SelectableText("")
+                        .fcNeutral300()
+                        .ffSourceCodePro()
+                        .fsXS()
+                        .style,
+                  ),
+                )
+              : SelectableText(str(viewModel.out))
+                  .fcNeutral300()
+                  .ffSourceCodePro()
+                  .fs(viewModel.fontSize),
+        ),
       ),
     );
   }

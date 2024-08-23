@@ -6,6 +6,7 @@ import 'package:devpanel/config/navigation_stack_observer.dart';
 import 'package:devpanel/ui/config/commons.dart';
 import 'package:devpanel/ui/config/setup.dart';
 import 'package:devpanel/ui/config/theme.dart';
+import 'package:devpanel/ui/widget/show_scrollbar.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -24,16 +25,19 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: theme,
-      debugShowCheckedModeBanner: false,
-      initialRoute: Routes.startupView,
-      onGenerateRoute: StackedRouter().onGenerateRoute,
-      navigatorKey: StackedService.navigatorKey,
-      navigatorObservers: [
-        StackedService.routeObserver,
-        NavigationStackObserver(),
-      ],
+    return ScrollConfiguration(
+      behavior: ShowScrollbar(),
+      child: MaterialApp(
+        theme: theme,
+        debugShowCheckedModeBanner: false,
+        initialRoute: Routes.startupView,
+        onGenerateRoute: StackedRouter().onGenerateRoute,
+        navigatorKey: StackedService.navigatorKey,
+        navigatorObservers: [
+          StackedService.routeObserver,
+          NavigationStackObserver(),
+        ],
+      ),
     );
   }
 }

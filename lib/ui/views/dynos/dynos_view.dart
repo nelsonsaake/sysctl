@@ -133,6 +133,20 @@ class DynosView extends StackedView<DynosViewModel> {
                                 children: [
                                   IconButton(
                                     icon: const Icon(
+                                      TablerIcons.square_rounded_minus,
+                                      color: kcNeutral400,
+                                    ),
+                                    onPressed: viewModel.decrementFontSize,
+                                  ),
+                                  IconButton(
+                                    icon: const Icon(
+                                      TablerIcons.square_rounded_plus,
+                                      color: kcNeutral400,
+                                    ),
+                                    onPressed: viewModel.incrementFontSize,
+                                  ),
+                                  IconButton(
+                                    icon: const Icon(
                                       TablerIcons.trash_filled,
                                       color: kcNeutral400,
                                     ),

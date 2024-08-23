@@ -14,6 +14,10 @@ class DynosViewModel extends ContextViewModel {
 
   final scrollController = ScrollController();
 
+  double _fontSize = 10.5;
+
+  double get fontSize => _fontSize;
+
   List<DynoRunner>? _dynoRunners;
 
   List<DynoRunner> get dynoRunners => _dynoRunners ?? [];
@@ -93,6 +97,16 @@ class DynosViewModel extends ContextViewModel {
 
   deleteDyno(Dyno dyno) async {
     return runBusyFuture(_deleteDyno(dyno));
+  }
+
+  decrementFontSize() {
+    _fontSize -= .5;
+    notifyListeners();
+  }
+
+  incrementFontSize() {
+    _fontSize += .5;
+    notifyListeners();
   }
 
   DynoRunner makeRunner(dyno) {

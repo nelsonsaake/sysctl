@@ -36,6 +36,13 @@ final theme = ThemeData(
     bodyLarge: const Text("").fsLG().fcNeutral200().style,
   ),
 
+  scrollbarTheme: ScrollbarThemeData(
+    thumbVisibility: WidgetStateProperty.all(true),
+    thickness: WidgetStateProperty.all(8.0),
+    radius: r(10),
+    thumbColor: WidgetStateProperty.all(Colors.blue),
+  ),
+
   inputDecorationTheme: InputDecorationTheme(
     filled: true,
     fillColor: kcNeutral800,

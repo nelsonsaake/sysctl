@@ -14,7 +14,7 @@ win:
 
 ncommit:
 	git add .
-	git commit -m "ncommit"
+	git commit -m "wip"
 	git push origin main 
 
 pull:
