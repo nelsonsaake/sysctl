@@ -71,8 +71,8 @@ class DynoRunner {
       workingDirectory: dyno.workingDirectory,
     );
 
-    _outStream =
-        _proc?.stdout.transform(const AsciiDecoder()).asBroadcastStream();
+    // const AsciiDecoder()
+    _outStream = _proc?.stdout.transform(utf8.decoder).asBroadcastStream();
     _errStream = _proc?.stderr.transform(utf8.decoder).asBroadcastStream();
     _stream = _outStream?.mergeWith([if (_errStream != null) _errStream!]);
 
@@ -85,7 +85,6 @@ class DynoRunner {
       _proc = null;
       _outStream = null;
       _errStream = null;
-      _stream = null;
       notifylisteners("cleared!");
     });
   }

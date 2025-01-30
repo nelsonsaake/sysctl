@@ -1,0 +1,6 @@
+{
+    "name": "mtt web actions",
+    "workingDirectory": "C:/Users/user/Desktop/projects/benchfive/mytrotro/mytrotro-web-actions",
+    "exec": "cmd /c npm run dev"
+}
+
