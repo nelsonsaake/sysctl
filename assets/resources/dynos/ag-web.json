@@ -1,5 +1,5 @@
 {
-    "name": "Adorngirlies Web",
+    "name": "ag web",
     "workingDirectory": "C:/Users/user/Desktop/projects/code/adorngirlies/web",
     "exec": "cmd /c npm run dev"
 }

@@ -55,8 +55,7 @@ class DynoRunner {
     _out = "";
   }
 
-  notifylisteners(event) {
-    // debugPrint("$event");
+  notifylisteners(event) { 
     changeStreamController.add(event);
   }
 

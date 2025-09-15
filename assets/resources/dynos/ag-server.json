@@ -1,5 +1,5 @@
 {
-    "name": "Adorngirlies Server",
+    "name": "ag server",
     "workingDirectory": "C:/Users/user/Desktop/projects/code/adorngirlies/server",
     "exec": "cmd /c go run . start:server"
 }

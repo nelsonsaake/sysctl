@@ -5,6 +5,7 @@ import 'package:devpanel/cache/cache.dart';
 import 'package:devpanel/cache/sh.dart';
 import 'package:devpanel/dynos/dyno.dart';
 import 'package:devpanel/dynos/dyno_runner.dart';
+import 'package:devpanel/dynos/load_dyno_assets.dart';
 import 'package:devpanel/dynos/load_dyno_files.dart';
 import 'package:devpanel/viewmodels/context_viewmodel.dart';
 import 'package:flutter/material.dart';
@@ -96,6 +97,7 @@ class DynosViewModel extends ContextViewModel {
   }
 
   deleteDyno(Dyno dyno) async {
+    print("Deleting dyno with id: ${dyno.id}");
     return runBusyFuture(_deleteDyno(dyno));
   }
 
@@ -119,7 +121,7 @@ class DynosViewModel extends ContextViewModel {
     final dynoGroups = await runBusyFuture(
       Future.wait([
         loadDynosFromDB(),
-        loadDynoFiles(),
+        loadDynoAssets(),
       ]),
     );
     final dynos = dynoGroups.reduce((ls1, ls2) => [...ls1, ...ls2]);
